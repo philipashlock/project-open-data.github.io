@@ -54,10 +54,15 @@ The Project Open Data schema is case sensitive. The schema uses a camel case con
 Links to downloadable examples of metadata files developed in this and other formats in [the metadata resources](/metadata-resources/).  Tools to help agencies produce and maintain their data inventories are [available on GitHub](http://www.github.com/project-open-data) and hosted at [Labs.Data.gov](http://labs.data.gov).
 
 
-Schema Version Declaration (Required)
------------------------------
-In order to distinguish the schema version being used publishers are required to specify the relevant URI using the `conformsTo` field at the beginning of their data.json file. Version 1.1 of the schema should be identified with the following URI: http://project-open-data.cio.gov/v1.1/schema.  Optionally, publishers may also use the `describedBy` field to reference the default [JSON Schema](http://json-schema.org/) file used to define the schema (http://project-open-data.cio.gov/v1.1/schema/catalog.json) or they may refer to their own JSON Schema file where they have extended the schema. These fields are both part of a JSON object that also contains a listing of all datasets under the `dataset` field. See the [Catalog section](#Catalog) under *Further Metadata Field Guidance* for more details. 
+Schema Version Required Declaration
+-------------------------------------------------
+The following fields are required, to be used to describe each Public Data Listing. See the [Catalog section](#Catalog) under *Further Metadata Field Guidance* for more details. 
 
+{: .table .table-striped}
+Field                   | Label                 | Definition
+--------------          | --------------        | --------------                                                                                                                       
+conformsTo			| Data Standard        	| Version 1.1 of the schema should be identified with the following URI: http://project-open-data.cio.gov/v1.1/schema. Optionally, publishers may also use the `describedBy` field to reference the default [JSON Schema](http://json-schema.org/) file used to define the schema (http://project-open-data.cio.gov/v1.1/schema/catalog.json) or they may refer to their own JSON Schema file where they have extended the schema.  
+dataset				| Dataset        	| This field is a container for an array of Dataset objects. See See <a href="#Dataset">Dataset Fields</a> below for details</td> below for details.  
 
 "Common Core" Required Fields
 -----------------------------
@@ -120,76 +125,69 @@ Agencies are encouraged to use the following expanded fields when appropriate. A
 {: .table .table-striped}
 Field                                               | Label               		| Definition
 --------------                                      | --------------            | --------------                                                                                                                       
-accrualPeriodicity		                            | Frequency           		| Frequency with which dataset is published.                                                                                                    
-conformsTo				                            | Data Standard        		| URI used to identify a standardized specification the dataset conforms to
-describedBy				                            | Data Dictionary     		| URL to the data dictionary for the dataset.  Note that documentation other than a data dictionary can be referenced using Related Documents (`references`).              
-describedByType			                            | Data Dictionary Type  	| The machine-readable file format ([IANA Media Type](http://www.iana.org/assignments/media-types) or [MIME Type](http://en.wikipedia.org/wiki/Internet_media_type)) of the dataset's Data Dictionary (`describedBy`)
-dataQuality<sup>[USG](#USG-note)</sup>				| Data Quality        		| Whether the dataset meets the agency's Information Quality Guidelines (true/false).                                                                                                             
-isPartOf				                            | Collection          		| The collection of which the dataset is a subset.  
-issued					                            | Release Date        		| Date of formal issuance.                                                                                                                      
-language				                            | Language            		| The language of the dataset.                                                                                                                  
-landingPage				                            | Homepage URL        		| This field is not intended for an agency's homepage (e.g. www.agency.gov), but rather if a dataset has a human-friendly hub or landing page that users can be directed to for all resources tied to the dataset.  
-primaryITInvestmentUII<sup>[USG](#USG-note)</sup>	| Primary IT Investment UII | For linking a dataset with an IT Unique Investment Identifier (UII) 
-references				                            | Related Documents   		| Related documents such as technical information about a dataset, developer documentation, etc.                                                                                            
+accrualPeriodicity		                            	| Frequency           		| Frequency with which dataset is published.                                                                                                    
+conformsTo				                        | Data Standard        		| URI used to identify a standardized specification the dataset conforms to
+dataQuality<sup>[USG](#USG-note)</sup>				| Data Quality        		| Whether the dataset meets the agency's Information Quality Guidelines (true/false).     
+describedBy				                        | Data Dictionary     		| URL to the data dictionary for the dataset.  Note that documentation other than a data dictionary can be referenced using Related Documents (`references`).              
+describedByType			                        	| Data Dictionary Type  	| The machine-readable file format ([IANA Media Type](http://www.iana.org/assignments/media-types) or [MIME Type](http://en.wikipedia.org/wiki/Internet_media_type)) of the dataset's Data Dictionary (`describedBy`)
+isPartOf				                        | Collection          		| The collection of which the dataset is a subset.  
+issued					                        | Release Date        		| Date of formal issuance.                                                                                                                      
+language				                        | Language            		| The language of the dataset.                                                                                                                  
+landingPage				                        | Homepage URL        		| This field is not intended for an agency's homepage (e.g. www.agency.gov), but rather if a dataset has a human-friendly hub or landing page that users can be directed to for all resources tied to the dataset.  
+primaryITInvestmentUII<sup>[USG](#USG-note)</sup>		| Primary IT Investment UII | For linking a dataset with an IT Unique Investment Identifier (UII) 
+references				                        | Related Documents   		| Related documents such as technical information about a dataset, developer documentation, etc.                                                                                            
 systemOfRecords<sup>[USG](#USG-note)</sup>			| System of Records   		| If the systems is designated as a system of records under the Privacy Act of 1974, provide the URL to the System of Records Notice related to this dataset. 
-theme					                            | Category            		| Main thematic category of the dataset.  
+theme					                        | Category            		| Main thematic category of the dataset.  
 
 Further Metadata Field Guidance
 -------------------------------
 Additional details for each field are provided here broken down into sections for the overarching [Catalog](#Catalog), each [dataset](#dataset), and each dataset's [distribution](#distribution).
 
-{: .schema-fields .requirements-key}
-* Key
-	* {: .field-required} Required
-	* {: .field-required-if-applicable} Required if Applicable
-	* {: .field-optional} Expanded (optional)
 
-
-{: .schema-fields}
 * Catalog
-	* {: .field-required}[conformsTo](#conformsTo)
-	* {: .field-optional}[describedBy](#describedBy)
-	* {: .field-required}[dataset](#dataset)
-		* {: .field-required}[accessLevel](#accessLevel)
-		* {: .field-optional}[accrualPeriodicity](#accrualPeriodicity)
-		* {: .field-required}[bureauCode](#bureauCode)
-		* {: .field-optional}[conformsTo](#dataset-conformsTo)
-		* {: .field-required}[contactPoint](#contactPoint)
-			* {: .field-required}[fn](#contactPoint-fn)
-			* {: .field-required}[hasEmail](#contactPoint-hasEmail)
-		* {: .field-required-if-applicable}[dataQuality](#dataQuality)
-		* {: .field-optional}[describedBy](#dataset-describedBy)
-		* {: .field-optional}[describedByType](#dataset-describedByType)
-		* {: .field-required}[description](#description)
-		* {: .field-required-if-applicable}[distribution](#distribution)
-			* {: .field-optional}[accessURL](#distribution-accessURL)
-			* {: .field-optional}[conformsTo](#distribution-conformsTo)
-			* {: .field-required-if-applicable}[downloadURL](#distribution-downloadURL)
-			* {: .field-optional}[describedBy](#distribution-describedBy)
-			* {: .field-optional}[describedByType](#distribution-describedByType)
-			* {: .field-optional}[description](#distribution-description)
-			* {: .field-optional}[format](#distribution-format)
-			* {: .field-required-if-applicable}[mediaType](#distribution-mediaType)
-			* {: .field-optional}[title](#title)
-		* {: .field-required}[identifier](#identifier)
-		* {: .field-optional}[isPartOf](#isPartOf)
-		* {: .field-optional}[issued](#issued)
-		* {: .field-required}[keyword](#keyword)
-		* {: .field-optional}[landingPage](#landingPage)
-		* {: .field-optional}[language](#language)
-		* {: .field-required-if-applicable}[license](#license)
-		* {: .field-required}[modified](#modified)
-		* {: .field-optional}[primaryITInvestmentUII](#primaryITInvestmentUII)
-		* {: .field-required}[programCode](#programCode)
-		* {: .field-required}[publisher](#publisher)
-			* {: .field-required}[name](#publisher-name)
-			* {: .field-optional}[subOrganizationOf](#publisher-subOrganizationOf)
-		* {: .field-required-if-applicable}[rights](#rights)
-		* {: .field-required-if-applicable}[spatial](#spatial)
-		* {: .field-optional}[systemOfRecords](#systemOfRecords)
-		* {: .field-required-if-applicable}[temporal](#temporal)
-		* {: .field-optional}[theme](#theme)
-		* {: .field-required}[title](#title)
+	* [conformsTo](#conformsTo)
+	* [describedBy](#describedBy)
+	* [dataset](#dataset)
+		* [accessLevel](#accessLevel)
+		* [accrualPeriodicity](#accrualPeriodicity)
+		* [bureauCode](#bureauCode)
+		* [conformsTo](#dataset-conformsTo)
+		* [contactPoint](#contactPoint)
+			* [fn](#contactPoint-fn)
+			* [hasEmail](#contactPoint-hasEmail)
+		* [dataQuality](#dataQuality)
+		* [describedBy](#dataset-describedBy)
+		* [describedByType](#dataset-describedByType)
+		* [description](#description)
+		* [distribution](#distribution)
+			* [accessURL](#distribution-accessURL)
+			* [conformsTo](#distribution-conformsTo)
+			* [downloadURL](#distribution-downloadURL)
+			* [describedBy](#distribution-describedBy)
+			* [describedByType](#distribution-describedByType)
+			* [description](#distribution-description)
+			* [format](#distribution-format)
+			* [mediaType](#distribution-mediaType)
+			* [title](#title)
+		* [identifier](#identifier)
+		* [isPartOf](#isPartOf)
+		* [issued](#issued)
+		* [keyword](#keyword)
+		* [landingPage](#landingPage)
+		* [language](#language)
+		* [license](#license)
+		* [modified](#modified)
+		* [primaryITInvestmentUII](#primaryITInvestmentUII)
+		* [programCode](#programCode)
+		* [publisher](#publisher)
+			* [name](#publisher-name)
+			* [subOrganizationOf](#publisher-subOrganizationOf)
+		* [rights](#rights)
+		* [spatial](#spatial)
+		* [systemOfRecords](#systemOfRecords)
+		* [temporal](#temporal)
+		* [theme](#theme)
+		* [title](#title)
 
 
 Catalog Fields {#Catalog}
