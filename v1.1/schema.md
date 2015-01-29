@@ -1,36 +1,37 @@
 ---
 published: true
 layout: default
-title: Draft v1.1 Metadata Schema
+title: Project Open Data Metadata Schema v1.1
 permalink: /v1.1/schema/
 filename: schema.md
 id: schema v1.1
 ---
 
-{: .bg-warning .text-danger}
-***IMPORTANT NOTE***  
-This is not the official version of the Project Open Data metadata schema. This is an open, working draft to explore possible changes to version 1.0, which serves as the base for this file. The pull requests merged into this file while it's in draft do not constitute OMB approved changes to the schema.
+
+{: .bg-success}
+***New Schema***  
+This version of the schema replaces [Project Open Data Metadata Schema v1.0](/schema). Federal CFO-Act agencies are expected to complete the transition to the v1.1 schema by **February 1st, 2015**. <br> <br> To see changes from v1.0 to v1.1 see the [Version 1.1 Update](/catalog/#version-11-update) especially the field mappings in [Metadata Resources](/v1.1/metadata-resources/#field-mappings) and the [Metadata Changelog](/metadata-changelog/)
 
 ---------------------------
 
 This section contains guidance to support the use of the Project Open Data metadata to list agency datasets and application programming interfaces (APIs) as hosted at agency.gov/data.
 
-Updates to the metadata schema can be found in the [changelog](/metadata-changelog). Current metadata version: 1.1 FINAL as of [DATE OF MERGE].
+Updates to the metadata schema can be found in the [changelog](/metadata-changelog). Current metadata version: 1.1 as of November 6th, 2014.
 
 Standard Metadata Vocabulary
 ----------------------------
 Metadata is structured information that describes, explains, locates, or otherwise makes it easier to retrieve, use, or manage an information resource (NISO 2004, ISBN: 1-880124-62-9).  The challenge is to define and name standard metadata fields so that a data consumer has sufficient information to process and understand the described data. The more information that can be conveyed in a standardized regular format, the more valuable data becomes. Metadata can range from basic to advanced, from allowing one to discover the mere fact that a certain data asset exists and is about a general subject all the way to providing detailed information documenting the structure, processing history, quality, relationships, and other properties of a dataset. Making metadata machine readable greatly increases its utility, but requires more detailed standardization, defining not only field names, but also how information is encoded in the metadata fields.
 
-Establishing a common vocabulary is the key to communication. The **metadata schema** specified in this memorandum is based on [DCAT](http://www.w3.org/TR/vocab-dcat/), a hierarchical vocabulary specific to datasets. This specification defines three types of metadata elements: Required, Required-if (conditionally required), and Expanded fields.  These elements were selected to represent information that is most often looked for on the web. To assist users of other metadata standards, [mappings](http://project-open-data.github.io/metadata-resources/#common_core_required_fields_equivalents) to equivalent elements in other standards are provided.  
+Establishing a common vocabulary is the key to communication. The **metadata schema** specified in this memorandum is based on [DCAT](http://www.w3.org/TR/vocab-dcat/), a hierarchical vocabulary specific to datasets. This specification defines three types of metadata elements: Required, Required-if (conditionally required), and Expanded fields.  These elements were selected to represent information that is most often looked for on the web. To assist users of other metadata standards, [field mappings](/v1.1/metadata-resources/#field-mappings) to equivalent elements in other standards are provided.  
 
 What to Document -- Datasets and Web APIs
 -------------------------------------
 
 A dataset is an identifiable collection of structured data objects unified by some criteria (authorship, subject, scope, spatial or temporal extent...). A catalog is a collection of descriptions of datasets; each description is a metadata record. The intention of a data catalog is to facilitate data access by users who are first interested in a particular kind of data, and upon finding a fit-for-purpose dataset, will next want to know how to get the data.
 
-A Web API (**A**pplication **P**rogramming **I**nterface) allows computer programs to dynamically query a dataset using the World Wide Web. For example, a dataset [of farmers markets](https://explore.data.gov/Agriculture/Farmers-Markets-Geographic-Data/wfna-38ey) may be made available for download as a single file (e.g., a CSV), or may be made available to developers through a Web API, such that a computer program could use a ZIP Code to retrieve a list of farmers markets in the ZIP Code area.
+A Web API (**A**pplication **P**rogramming **I**nterface) allows computer programs to dynamically query a dataset using the World Wide Web. For example, a dataset of [farmers markets](http://catalog.data.gov/dataset/farmers-markets-geographic-data) may be made available for download as a single file (e.g., a CSV), or may be made available to developers through a Web API, such that a computer program could use a ZIP Code to retrieve a list of farmers markets in the ZIP Code area.
 
-The catalog file for each agency should list all of the agency's datasets that can be made public, regardless of whether they are distributed by a file download or through a Web API.  
+The catalog file for each agency should list all of the agency's datasets that can be made public, regardless of whether they are distributed by a file download or a Web API. Please also see the extended guidance on [documenting Web APIs in your data.json files](/v1.1/api/).  
 
 
 Metadata File Format --  JSON
@@ -51,7 +52,7 @@ The Project Open Data schema is case sensitive. The schema uses a camel case con
 > Incorrect: `contactpoint`  
 > incorrect: `CONTACTPOINT`  
 
-Links to downloadable examples of metadata files developed in this and other formats are in [the metadata resources](/metadata-resources/).  Tools to help agencies produce and maintain their data inventories are [available on GitHub](http://www.github.com/project-open-data) and hosted at [Labs.Data.gov](http://labs.data.gov).
+Links to downloadable examples of metadata files developed in this and other formats are in the [metadata resources](/v1.1/metadata-resources/).  Tools to help agencies produce and maintain their data inventories are [available on GitHub](http://www.github.com/project-open-data) and hosted at [Labs.Data.gov](http://labs.data.gov).
 
 
 Catalog Fields
@@ -174,7 +175,7 @@ Additional details for each field are provided here broken down into sections fo
             * {: .field-optional}[description](#distribution-description)
             * {: .field-optional}[format](#distribution-format)
             * {: .field-required-if-applicable}[mediaType](#distribution-mediaType)
-            * {: .field-optional}[title](#title)
+            * {: .field-optional}[title](#distribution-title)
         * {: .field-required}[identifier](#identifier)
         * {: .field-optional}[isPartOf](#isPartOf)
         * {: .field-optional}[issued](#issued)
@@ -189,6 +190,7 @@ Additional details for each field are provided here broken down into sections fo
             * {: .field-optional}[@type](#publisher-type) 
             * {: .field-required}[name](#publisher-name)
             * {: .field-optional}[subOrganizationOf](#publisher-subOrganizationOf)
+        * {: .field-optional}[references](#references)
         * {: .field-required-if-applicable}[rights](#rights)
         * {: .field-required-if-applicable}[spatial](#spatial)
         * {: .field-optional}[systemOfRecords](#systemOfRecords)
@@ -282,7 +284,7 @@ Dataset Fields {#Dataset}
 **Cardinality** | (0,1)
 **Required** | No
 **Accepted Values** | ISO 8601 Repeating Duration (or `irregular`)
-**Usage Notes** | Must be an ISO 8601 repeating duration unless this is not possible because the accrual periodicity is completely irregular, in which case the value should simply be `irregular`.  The value should not include a start or end date but rather simply express the duration of time between data publishing.  For example, a dataset which is updated on an annual basis would be `R/P1Y`; every three months would be `R/P3M`; weekly would be `R/P1W`; and daily would be `R/P1D`.  Further examples and documenation [can be found here](/iso8601_guidance#accrualperiodicity).  
+**Usage Notes** | Must be an ISO 8601 repeating duration unless this is not possible because the accrual periodicity is completely irregular, in which case the value should simply be `irregular`.  The value should not include a start or end date but rather simply express the duration of time between data publishing.  For example, a dataset which is published on an annual basis would be `R/P1Y`; every three months would be `R/P3M`; weekly would be `R/P1W`; and daily would be `R/P1D`.  Further examples and documenation [can be found here](/iso8601_guidance#accrualperiodicity).  
 **Example** |  `{"accrualPeriodicity":"R/P1Y"}`
 
 {: .table .table-striped #bureauCode}
@@ -302,7 +304,7 @@ Dataset Fields {#Dataset}
 **Required** | No
 **Accepted Values** | String (URI)
 **Usage Notes** | This is used to identify a standardized specification the dataset conforms to. If this is a technical specification associated with a particular serialization of a distribution, this should be specified with [conformsTo](#distribution-conformsTo) at the distribution level. It's recommended that this be a URI that serves as a unique identifier for the standard. The URI may or may not also be a URL that provides documentation of the specification.
-**Example** | `{"conformsTo": "http://www.xbrl.org/Specification/XBRL-2.1/REC-2003-12-31/XBRL-2.1-REC-2003-12-31+corrected-errata-2013-02-20.html"}`
+**Example** | `{"conformsTo": "http://www.agency.gov/common-vegetable-analysis-model/"}`
 
 {: .table .table-striped #contactPoint}
 **Field [#](#contactPoint){: .permalink}** | **contactPoint**
@@ -448,7 +450,7 @@ Dataset Fields {#Dataset}
 **Cardinality** | (0,1)
 **Required** | Yes, if the file is accessible indirectly, through means other than direct download.
 **Accepted Values** | String (URL)
-**Usage Notes** | This should be the URL for an indirect means of accessing the data, such as API documentation, a 'wizard' or other graphical interface which is used to generate a download, feed, or a request form for the data. When accessLevel is "restricted public" but the dataset is available online indirectly, this field should be the URL that provides indirect access. This should not be a **direct** download URL.  It is usually assumed that accessURL is an HTML webpage.  
+**Usage Notes** | This should be the URL for an indirect means of accessing the data, such as [API documentation](/v1.1/api/), a 'wizard' or other graphical interface which is used to generate a download, feed, or a request form for the data. When accessLevel is "restricted public" but the dataset is available online indirectly, this field should be the URL that provides indirect access. This should not be a **direct** download URL.  It is usually assumed that accessURL is an HTML webpage.  
 **Example** |  `{"accessURL":"http://www.agency.gov/api/vegetables/"}`
 
 {: .table .table-striped .child-field #distribution-conformsTo}
@@ -466,7 +468,7 @@ Dataset Fields {#Dataset}
 **Cardinality** | (0,1)
 **Required** | Yes, if the file is available for public download.
 **Accepted Values** | String (URL)
-**Usage Notes** | This must be the `direct` download URL. Other means of accessing the dataset should be expressed using `accessURL`.  This should always be accompanied by `mediaType`.  
+**Usage Notes** | This must be the **direct** download URL. Other means of accessing the dataset should be expressed using `accessURL`.  This should always be accompanied by `mediaType`.  
 **Example** |  `{"downloadURL":"http://www.agency.gov/vegetables/listofvegetables.csv"}`
 
 {: .table .table-striped .child-field #distribution-describedBy}
@@ -502,8 +504,8 @@ Dataset Fields {#Dataset}
 **Cardinality** | (0,1)
 **Required** | No
 **Accepted Values** | String
-**Usage Notes** | This should be a human-readable description of the file format of the dataset, that provides useful information that might not be apparent from `mediaType`.  
-**Example** | `{"format":"A CSV spreadsheet compressed in a ZIP file."}`
+**Usage Notes** | This should be a human-readable description of the file format of the dataset, that provides useful information that might not be apparent from `mediaType`.  Note that `API` should always be used to distinguish web APIs.  
+**Example** | `{"format":"CSV"}`
 
 {: .table .table-striped .child-field #distribution-mediaType}
 **Field [#](#distribution-mediaType){: .permalink}** | **distribution &rarr; mediaType**
@@ -530,8 +532,8 @@ Dataset Fields {#Dataset}
 **Cardinality** | (1,1)
 **Required** | Yes, always
 **Accepted Values** | String
-**Usage Notes** | This field allows third parties to maintain a consistent record for datasets even if title or URLs are updated. Agencies may integrate an existing system for maintaining unique identifiers or enter arbitrary characters for this field. However, each identifier **must** be unique across the agency's catalog and remain fixed. Characters should be alphanumeric.
-**Example** |  `{"identifier":"1344"}`
+**Usage Notes** | This field allows third parties to maintain a consistent record for datasets even if title or URLs are updated. Agencies may integrate an existing system for maintaining unique identifiers. Each identifier **must** be unique across the agency's catalog and remain fixed. It is **highly recommended** that a [URI (preferably an HTTP URL)](http://tools.ietf.org/html/rfc3986#section-1.1.3) be used to provide a globally unique identifier. Identifier URLs should be designed and maintained to persist indefinitely regardless of whether the URL of the resource itself changes.
+**Example** |  `{"identifier":"http://dx.doi.org/10.7927/H4PZ56R2"}`
 
 {: .table .table-striped #isPartOf}
 **Field [#](#isPartOf){: .permalink}** | **isPartOf**
@@ -540,7 +542,7 @@ Dataset Fields {#Dataset}
 **Required** | No
 **Accepted Values** | String
 **Usage Notes** | This field allows the grouping of multiple datasets into a "collection".  This field should be employed by the individual datasets that together make up a collection.  The value for this field should match the `identifier` of the parent dataset.  
-**Example** |  `{"isPartOf":"1344"}`
+**Example** |  `{"isPartOf":"http://dx.doi.org/10.7927/H4PZ56R2"}`
 
 {: .table .table-striped #issued}
 **Field [#](#issued){: .permalink}** | **issued**
@@ -593,8 +595,8 @@ Dataset Fields {#Dataset}
 **Cardinality** | (1,1)
 **Required** | Yes, always
 **Accepted Values** | ISO 8601 Date
-**Usage Notes** | Dates should be [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) of highest resolution. In other words, as much of YYYY-MM-DDThh:mm:ss.sTZD as is relevant to this dataset. If this file is brand-new, enter the `issued` date here as well. If there is a need to reflect that the dataset is continually updated, ISO 8601 formatting can account for this [with repeating intervals](http://en.wikipedia.org/wiki/ISO_8601#Time_intervals). For instance, `R/P1D` for daily, `R/P2W` for every two weeks, and `R/PT5M` for every five minutes.
-+**Example** | `{"modified":"2012-01-15"}` or `{"modified":"R/P1D"}
+**Usage Notes** | Dates should be [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) of highest resolution. In other words, as much of YYYY-MM-DDThh:mm:ss.sTZD as is relevant to this dataset. If there is a need to reflect that the dataset is continually updated, ISO 8601 formatting can account for this [with repeating intervals](http://en.wikipedia.org/wiki/ISO_8601#Time_intervals). For instance, `R/P1D` for daily, `R/P2W` for every two weeks, and `R/PT5M` for every five minutes.
++**Example** | `{"modified":"2012-01-15"}` or `{"modified":"R/P1D"}`
 
 {: .table .table-striped #primaryITInvestmentUII}
 **Field [#](#primaryITInvestmentUII){: .permalink}** | **primaryITInvestmentUII**
@@ -713,8 +715,8 @@ Dataset Fields {#Dataset}
 **Cardinality** | (0,1)
 **Required** | Yes, if applicable
 **Accepted Values** | ISO 8601 Date
-**Usage Notes** | This field should contain an interval of time defined by start and end dates.  Dates should be formatted as pairs of {start datetime/end datetime} in the [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. ISO 8601 specifies that datetimes can be formatted in a number of ways, including a simple four-digit year (eg. 2013) to a much more specific YYYY-MM-DDTHH:MM:SSZ, where the T specifies a seperator between the date and time and time is expressed in 24 hour notation in the UTC (Zulu) time zone. (e.g., 2011-02-14T12:00:00Z/2013-07-04T19:34:00Z). Use a solidus ("/") to separate start and end times.  If there is a need to reflect that the dataset is continually updated, ISO 8601 formatting can account for this [with repeating intervals](http://en.wikipedia.org/wiki/ISO_8601#Time_intervals).  For instance, updated monthly starting in January 2010 and continuing through the present would be represented as: `R/2010-01/P1M`. Updated every 5 minutes beginning on February 15, 2010 would be represented as: `R/2010-02-15/PT5M`.  
-**Example** |  `{"temporal":"2000-01-15T00:45:00Z/2010-01-15T00:06:00Z"}`  or `{"temporal":"R/2000-01-15T00:45:00Z/P1W"}` 
+**Usage Notes** | This field should contain an interval of time defined by the start and end dates for which the dataset is applicable.  Dates should be formatted as pairs of {start datetime/end datetime} in the [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. ISO 8601 specifies that datetimes can be formatted in a number of ways, including a simple four-digit year (eg. 2013) to a much more specific YYYY-MM-DDTHH:MM:SSZ, where the T specifies a seperator between the date and time and time is expressed in 24 hour notation in the UTC (Zulu) time zone. (e.g., 2011-02-14T12:00:00Z/2013-07-04T19:34:00Z). Use a solidus ("/") to separate start and end times.  If there is a need to define the start or end of applicability using a duration rather than a date, ISO 8601 formatting can account for this [with duration based intervals](http://en.wikipedia.org/wiki/ISO_8601#Time_intervals).  For instance, applicability starting in January 2010 and continuing for one month could be represented as `2010-01/P1M` or `2010-01/2010-02`. However, when possible, full dates are preferred for both start and end times.  
+**Example** |  `{"temporal":"2000-01-15T00:45:00Z/2010-01-15T00:06:00Z"}`  or `{"temporal":"2000-01-15T00:45:00Z/P1W"}` 
 
 {: .table .table-striped #theme}
 **Field [#](#theme){: .permalink}** | **theme**
@@ -767,7 +769,6 @@ We added the **dataQuality** to indicate whether or not the data meets an agency
 
 Additional Information
 ----------------------
-* [Schema.org](http://schema.org)
+
+* [Template and Sample Files (CSV and JSON format)](/v1.1/metadata-resources/)
 * [DCAT](http://www.w3.org/TR/vocab-dcat/)
-* [Vocab.Data.gov](http://vocab.data.gov)
-* [Template and Sample Files (CSV and JSON format)](/metadata-resources/)

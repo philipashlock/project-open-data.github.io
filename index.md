@@ -30,7 +30,7 @@ This section is a list of definitions and principles used to guide the project.
 
 2-4 [Open Licenses](open-licenses/) - The definition for open licenses.
 
-2-5 [Project Open Data Metadata Schema](schema/) - The schema used to describe datasets, APIs, and published data at agency.gov/data.
+2-5 [Project Open Data Metadata Schema](/v1.1/schema/) - The schema used to describe datasets, APIs, and published data at agency.gov/data.
 
 ----------------
 
@@ -43,6 +43,8 @@ Implementation guidance for open data practices.
 3-2 [Implementation Guide](/implementation-guide/) - Official OMB implementation guidance for each step of implementing the policy.
 
 3-3 [Public Data Listing](/catalog/) - The specific guidance for publishing the Open Data Catalog at the agency.gov/data page.
+
+3-4 [Documenting APIs](/v1.1/api/) - The specific guidance for documenting APIs in the data catalogs.   
 
 3-4 [Frequently Asked Questions](/faq/) - A growing list of common questions and answers to facilitate adoption of open data projects.
 
@@ -66,9 +68,9 @@ This section is a list of ready-to-use solutions or tools that will help agencie
 
 4-6 [Catalog Generator](http://labs.data.gov/dashboard/datagov/csv_to_json) - Multi-format tool to generate and maintain agency.gov/data catalog files. - *[Alternative](http://project-open-data.github.com/catalog-generator/)*
 
-4-7 A data.json validator can help you check compliance with the POD schema. - *[Hosted](http://data.civicagency.org/validate)*
+4-7 [Data.json validator](http://labs.data.gov/dashboard/validate) can help you check compliance with the POD schema.
 
-4-8 [Project Open Data Dashboard](http://data.civicagency.org) - A dashboard to check the status of /data and /data.json at each agency. This also includes a validator.
+4-8 [Project Open Data Dashboard](http://labs.data.gov/dashboard/) - A dashboard to check the status of /data and /data.json at each agency. This also includes a validator.
 
 4-9 [Data.json File Merger](http://data.json.file.merger.ongithub.com/) - Allows the easy combination of multiple data.json files from component agencies or bureaus into one combined file.
 
@@ -76,7 +78,7 @@ This section is a list of ready-to-use solutions or tools that will help agencie
 
 4-11 [CFPB Project Qu](https://github.com/cfpb/qu) - The CFPB's in-progress data publishing platform, created to serve public data sets.
 
-4-12 [HMDA Tools](http://https://github.com/cfpb/hmda-tools) - Lightweight tools to make importing and analyzing [Home Mortgage Disclosure Act](http://en.wikipedia.org/wiki/Home_Mortgage_Disclosure_Act) data easier.
+4-12 [HMDA Tools](https://github.com/cfpb/hmda-tools) - Lightweight tools to make importing and analyzing [Home Mortgage Disclosure Act](http://en.wikipedia.org/wiki/Home_Mortgage_Disclosure_Act) data easier.
 
 4-13 [ESRI2Open](http://github.com/project-open-data/esri2open) - A tool which converts spatial and non-spatial data form ESRI only formats to the Open Data formats, CSV, JSON, or GeoJSON, making them more a part of the WWW ecology.
 
@@ -86,11 +88,13 @@ This section is a list of ready-to-use solutions or tools that will help agencie
 
 4-16 [DataVizWiz](https://drupal.org/project/datavizwiz) - A [Drupal](http://drupal.org) module that provides a fast way to get data vizualizations online.
 
-4-17 [Esri Geoportal Server](https://github.com/Esri/geoportal-server/) - Open source catalog supporting ISO/FGDC/DC/... metadata with mapping to DCAT to support agency.gov/data.json listings in addition to providing [OGC CSW](http://www.opengeospatial.org/standards/cat), [OAI-PMH](http://www.openarchives.org/pmh/) and [OpenSearch](http://www.opensearch.org). Supports automated harvesting from other open catalog sources.
+4-17 [Datahub.io](http://datahub.io/) - A service offered by the Open Knowledge Foundation that allows  civic bodies to host data publicly for free. 
 
-4-18 [Libre Information Batch Restructuring Engine](https://github.com/commonwealth-of-puerto-rico/libre) - Open data conversion and API tool, created by the Office of the Chief Information Officer of the Commonwealth of Puerto Rico.
+4-18 [Esri Geoportal Server](https://github.com/Esri/geoportal-server/) - Open source catalog supporting ISO/FGDC/DC/... metadata with mapping to DCAT to support agency.gov/data.json listings in addition to providing [OGC CSW](http://www.opengeospatial.org/standards/cat), [OAI-PMH](http://www.openarchives.org/pmh/) and [OpenSearch](http://www.opensearch.org). Supports automated harvesting from other open catalog sources.
 
-4-19 [JSON-to-CSV Converter](http://konklone.io/json/) - A handy means of converting data.json files to a spreadsheet-friendly format.  A [similar tool](http://shancarter.github.io/mr-data-converter/) can provide basic CSV-to-JSON functionality.
+4-19 [Libre Information Batch Restructuring Engine](https://github.com/commonwealth-of-puerto-rico/libre) - Open data conversion and API tool, created by the Office of the Chief Information Officer of the Commonwealth of Puerto Rico.
+
+4-20 [JSON-to-CSV Converter](http://konklone.io/json/) - A handy means of converting data.json files to a spreadsheet-friendly format.  A [similar tool](http://shancarter.github.io/mr-data-converter/) can provide basic CSV-to-JSON functionality.
 
 ----------------
 
@@ -98,7 +102,7 @@ This section is a list of ready-to-use solutions or tools that will help agencie
 
 This section contains programmatic tools, resources, and/or checklists to help programs determine open data requirements.
 
-5-1 [Metadata Resources](metadata-resources/) -
+5-1 [Metadata Resources](v1.1/metadata-resources/) -
 Resources to provide guidance and assistance for each aspect of creating and maintaining agency.gov/data catalog files.
 
 5-2 [Business Case for Open Data](business-case/) - Overview of the benefits associated with open data.
@@ -146,6 +150,8 @@ Case studies of novel or best practices from agencies who are leading in open da
 6-9 [Centers for Medicare & Medicaid Services (CMS) Data and Information Products](http://www.cms.gov/Research-Statistics-Data-and-Systems/Research/ResearchGenInfo/Downloads/CMS-Data-and-Information-Products.pdf) - a case study of how CMS is transitioning to a data-driven culture, including the creation of a new office for information products and data analytics, the release of open data summarizing provider utilization and payment information, and the responsible disclosure of restricted use data to qualified parties.  
 
 **For Developers: [View all appendices](http://github.com/project-open-data/) (and source)**
+
+----------------
 
 ##7. Open Data Engagement
 

@@ -1,15 +1,19 @@
 ---
 published: true
 layout: default
-title: Common Core Metadata Schema
+title: Common Core Metadata Schema v1.0
 permalink: /schema/
 filename: schema.md
 id: schema
 ---
 
+{: .bg-warning .text-danger}
+***IMPORTANT NOTE***  
+This version of the schema has been deprecated in favor of the [Project Open Data Metadata Schema v1.1](/v1.1/schema). Federal CFO-Act agencies are expected to complete the transition to the v1.1 schema by **February 1st, 2015**. 
+
 This section contains guidance to support the use of the common core metadata to list agency datasets and application programming interfaces (APIs) as hosted at agency.gov/data.
 
-Updates to the metadata schema can be found in the [changelog](/metadata-changelog). Current metadata version: 1.0 FINAL as of 9/20/13.
+Updates to the metadata schema can be found in the [changelog](/metadata-changelog). This is metadata version: 1.0 FINAL as of 9/20/13.
 
 Standard Metadata Vocabulary
 ----------------------------
@@ -293,8 +297,8 @@ Further Metadata Field Guidance (alphabetical by field)
 **Accepted Values** | ISO 8601 Date
 **Usage Notes** | Dates should be [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) of least resolution. In other words, as much of YYYY-MM-DDThh:mm:ss.sTZD as is relevant to this dataset. If this file is brand-new, enter the **issued** date here as well.  
   
-If there is a need to reflect that the dataset is continually updated, ISO 8601 formatting can account for this by [giving the duration](http://en.wikipedia.org/wiki/ISO_8601#Durations).  For instance, `P1D` for daily, `P2W` for every two weeks, and `PT5M` for every five minutes.  
-**Example** |  `{"modified":"2012-01-15"}` or `{"modified":"P1D"}`
+If there is a need to reflect that the dataset is continually updated, ISO 8601 formatting can account for this [with repeating intervals](http://en.wikipedia.org/wiki/ISO_8601#Time_intervals).  For instance, `R/P1D` for daily, `R/P2W` for every two weeks, and `R/PT5M` for every five minutes.  
+**Example** |  `{"modified":"2012-01-15"}` or `{"modified":"R/P1D"}`
 
 {: .table .table-striped}
 **Field <a class="permalink" href="#PrimaryITInvestmentUII">#</a>** | **<a name="PrimaryITInvestmentUII">PrimaryITInvestmentUII</a>**
